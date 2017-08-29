@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heitian.ssm.mapper.UserMapper">
+    <select id="check" resultType="com.heitian.ssm.model.User" parameterType="com.heitian.ssm.model.User">
+        select *  from USERINFO where
+        <if test="userName !=NULL">
+        username=#{userName}
+        </if>
+        <if test="userPwd !=NULL">
+        and userpwd=#{userPwd}
+        </if>
+    </select>
+    <select id="add" parameterType="com.heitian.ssm.model.User">
+        INSERT INTO USERINFO WHERE (username,userpwd,email,birthday)
+        VALUES (#{userName},#{userPwd}#{email},#{birthday})
+    </select>
+    <select id="find" resultType="com.heitian.ssm.model.User" parameterType="com.heitian.ssm.model.User">
+        SELECT * FROM USERINFO WHERE
+        <if test="userName !=NULL">
+        username=#{userName}
+        </if>
+    </select>
+</mapper>
